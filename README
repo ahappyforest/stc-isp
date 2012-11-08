@@ -12,3 +12,36 @@ limitation:
 	   development board have, Better
 	2. for some unknown reason, TTL to RS232 cannot download, 
 	   so if you konw, just hack my code.
+
+bash shell function:
+you can add this two func to your ~/.bashrc, One key download
+
+########################################################
+# 一键编译, 完成后在当前目录下生成build文件夹
+stc-cc() {
+# 首先在当前目录下生成build目录
+    if [ ! -d ./build ]; then
+        mkdir build
+    fi  
+
+# 编译
+    cd build
+    sdcc -mmcs51 ../$1
+    cd ../ 
+}
+
+# 一键编译&&烧写
+stc-cisp() {
+# 首先在当前目录下生成build目录
+    if [ ! -d ./build ]; then
+        mkdir build
+    fi  
+
+# 编译
+    sourceFile=$1;
+    cd build
+    sdcc -mmcs51 ../$1
+    stcisp -f ${sourceFile%.*}.ihx
+    cd ../ 
+}
+########################################################

@@ -141,7 +141,6 @@ int main (int argc, char *argv[])
 		if (interval < 50) interval = 50;
 		serial_fd = open_uart(serial_path, 0, baudrate, 8, 1, 0, 0);
 		assert(serial_fd != 0);
-
 	}
 
 	// 3. communicate with mcu

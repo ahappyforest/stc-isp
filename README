@@ -14,34 +14,33 @@ limitation:
 	   so if you konw, just hack my code.
 
 bash shell function:
-you can add this two func to your ~/.bashrc, One key download
+you can add this two func to your ~/.bashrc, One key download:
 
 ########################################################
 # 一键编译, 完成后在当前目录下生成build文件夹
 stc-cc() {
-# 首先在当前目录下生成build目录
-    if [ ! -d ./build ]; then
-        mkdir build
-    fi  
+CUR_PATH=`pwd`
+	if [ ! -d $CUR_PATH/build ]; then
+		mkdir $CUR_PATH/build
+	fi
 
-# 编译
-    cd build
-    sdcc -mmcs51 ../$1
-    cd ../ 
+	cd $CUR_PATH/build
+	sdcc -mmcs51 $CUR_PATH/$1
 }
 
 # 一键编译&&烧写
 stc-cisp() {
+CUR_PATH=`pwd`
 # 首先在当前目录下生成build目录
-    if [ ! -d ./build ]; then
-        mkdir build
-    fi  
+	if [ ! -d $CUR_PATH/build ]; then
+		mkdir $CUR_PATH/build
+	fi
 
 # 编译
-    sourceFile=$1;
-    cd build
-    sdcc -mmcs51 ../$1
-    stcisp -f ${sourceFile%.*}.ihx
-    cd ../ 
+	sourceFile=$CUR_PATH/build/$1
+	cd $CUR_PATH/build
+	sdcc -mmcs51 $CUR_PATH/$1
+	cd $CUR_PATH
+	stcisp -f ${sourceFile%.*}.ihx
 }
 ########################################################

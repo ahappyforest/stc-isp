@@ -51,14 +51,14 @@ int main (int argc, char *argv[])
 				sprintf(hex_path, "%s", optarg);
 				break;
 			case 'h':
-				printf("version: gSTCISP/1.0.0\n"
-					   "Usage: gSTCISP [-h] [ -s serial ] [ -b baudrate ] [ -f hexfile ]\n"
+				printf("version: stcisp/1.0.0\n"
+					   "Usage: stcisp [-h] [ -s serial ] [ -b baudrate ] [ -f hexfile ]\n"
 					   "-h\t\t\t: this help\n"
 					   "-s\t\t\t: serial path(default: /dev/ttyUSB0)\n"
 					   "-b\t\t\t: serial baudrate(default: 9600)\n"
 					   "-f\t\t\t: the .ihx/.hex file by sdcc compiler or other compiler\n"
 					   "\n\n");
-				break;
+				return 0;
 			case '?':
 				printf("invalid option: %c\n", optopt);
 				return -1;
@@ -68,6 +68,19 @@ int main (int argc, char *argv[])
 	if (!(flag & OPT_SET_HEX_FILE)) {
 		fprintf(stderr, "no hex file\n");
 		exit(1);
+	}
+
+	// check hex_path is a regular file
+	{
+		struct stat statbuf;
+		if (lstat(hex_path, &statbuf) < 0) {
+			fprintf(stderr, "%s:%s\n", hex_path, strerror(errno));
+			exit(1);
+		}
+		if (!S_ISREG(statbuf.st_mode)) {
+			fprintf(stderr, "%s:Not regular file.\n", hex_path);
+			exit(1);
+		}
 	}
 
 
@@ -90,6 +103,9 @@ int main (int argc, char *argv[])
 			sprintf(cmd, "objcopy -I ihex -O binary %s.ihx %s.bin", prefix, prefix);
 		} else if (strstr(hex_path, ".hex") != NULL) {
 			sprintf(cmd, "objcopy -I ihex -O binary %s.hex %s.bin", prefix, prefix);
+		} else {
+			fprintf(stderr, "you must input .ihex or .hex file");
+			exit(1);
 		}
 
 		sprintf(binary_path, "%s.bin", prefix);

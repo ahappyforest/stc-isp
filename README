@@ -8,5 +8,7 @@ maybe, someone are looking for...just try this tools...
 just: Make~
 
 limitation:
-	1. use TTL to USB to download (PL2303 chip) if your development board have, Better
-	2. for some unknown reason, TTL to RS232 cannot download, so if you konw, just hack my code.
+	1. use TTL to USB to download (PL2303 chip) if your 
+	   development board have, Better
+	2. for some unknown reason, TTL to RS232 cannot download, 
+	   so if you konw, just hack my code.

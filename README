@@ -1,4 +1,7 @@
 An STC 8051 ISP programmer for linux
 for more information please use -h help
 
+
+this is a hack from gSTCISP, I just convert gtk version to command version
+
 just: Make~

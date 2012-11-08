@@ -28,6 +28,7 @@ int main (int argc, char *argv[])
 	int baudrate;
 	int serial_fd;
 	int startflag;
+	int interval = 100;
 
 	// 设置默认值
 	{
@@ -107,21 +108,24 @@ int main (int argc, char *argv[])
 	startflag = 0;
 	// 2. init serial device and open binary file
 	{
-		// 检测这两个文件是否符合要求
-		{
-			// ...
-		}
-		
-		init_msg();
-		input_file_msg((unsigned char *)binary_path);
-		serial_fd = open_uart(serial_path, 0, baudrate, 8, 1, 0, 0);
-		assert(serial_fd != 0);
-
-
 		down_baudrate = baudrate;
 		target_baudrate = down_baudrate;
 		if (target_baudrate > 9600) 
 			target_baudrate = 9600;
+
+		init_msg();
+		interval = input_file_msg((unsigned char *)binary_path);
+		if (!(interval % 0x80)) {
+			interval = interval / 0x80 + 1;
+		} else {
+			interval = interval / 0x80;
+		}
+
+		interval = interval * 0x80 * 8 * 10 / down_baudrate;
+		if (interval < 50) interval = 50;
+		serial_fd = open_uart(serial_path, 0, baudrate, 8, 1, 0, 0);
+		assert(serial_fd != 0);
+
 	}
 
 	// 3. communicate with mcu
@@ -134,15 +138,15 @@ int main (int argc, char *argv[])
 	fd_set fd_reads;
 	struct timeval timeout;
 	int ret;
-	int try_times;
+//	int try_times;
 
-	try_times = 10000;
+//	try_times = 10000;
 	while (1) {
 		FD_ZERO(&fd_reads);
 		FD_SET(serial_fd, &fd_reads);
 
 		timeout.tv_sec = 0;
-		timeout.tv_usec = 50000;
+		timeout.tv_usec = interval * 1000;
 
 		ret = select(FD_SETSIZE, &fd_reads, NULL, NULL, &timeout);
 		if (ret == 0) {
@@ -151,12 +155,12 @@ int main (int argc, char *argv[])
 				unsigned char buf = 0x7F;
 				write_uart(serial_fd, &buf, 1);
 			} else {
-				try_times--;
-				printf("Waiting Mcu...\n");
-				if (try_times <= 0) {
-					fprintf(stderr, "Mcu Do not Response...\n");
-					return -1;
-				}
+		//		try_times--;
+		//		printf("Waiting Mcu...\n");
+		//		if (try_times <= 0) {
+		//			fprintf(stderr, "Mcu Do not Response...\n");
+		//			return -1;
+		//		}
 			}
 			continue;
 		} else if (ret == -1) {
@@ -166,6 +170,7 @@ int main (int argc, char *argv[])
 		} else {
 			// 设置mcu首次响应标志
 			if (startflag == 0) {
+				printf("Start Programming>>>\n");
 				startflag = 1;
 			}
 

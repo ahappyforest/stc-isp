@@ -2,6 +2,11 @@ An STC 8051 ISP programmer for linux
 for more information please use -h help
 
 
-this is a hack from gSTCISP, I just convert gtk version to command version
+this is a hack from gSTCISP, I convert gtk(2.0) version to command version
+maybe, someone are looking for...just try this tools...
 
 just: Make~
+
+limitation:
+	1. use TTL to USB to download (PL2303 chip) if your development board have, Better
+	2. for some unknown reason, TTL to RS232 cannot download, so if you konw, just hack my code.

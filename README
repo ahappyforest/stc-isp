@@ -18,6 +18,7 @@ you can add this two func to your ~/.bashrc, One key download:
 
 ########################################################
 # 一键编译, 完成后在当前目录下生成build文件夹
+# one key compile, after this operation, the build dir will generate
 stc-cc() {
 CUR_PATH=`pwd`
 	if [ ! -d $CUR_PATH/build ]; then
@@ -29,6 +30,7 @@ CUR_PATH=`pwd`
 }
 
 # 一键编译&&烧写
+# one key compile&&isp, after this operation, the build dir will generate and programmed to STC chip
 stc-cisp() {
 CUR_PATH=`pwd`
 # 首先在当前目录下生成build目录

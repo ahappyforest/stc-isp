@@ -1,3 +1,38 @@
+/*
+***********************************************************
+* stc-isp
+*
+* Copyright (c) 2012
+*
+* This source code is released for free distribution under 
+* the terms of the GNU General Public License.
+*
+* file name: main.c
+* modify date: 2012
+* Author: van9ogh
+* Email: cow.vangogh@gmail.com
+* Program definitions:
+***********************************************************
+*/
+
+/*
+***********************************************************
+* gSTC-ISP
+*
+* Copyright (c) 2009-~  
+*
+* This source code is released for free distribution under 
+* the terms of the GNU General Public License.
+*
+* file name: main.c
+* modify date: 2010-2-9
+* Author: 
+*
+* Program definitions:
+***********************************************************
+*/
+
+
 #include <termios.h>
 #include <string.h>
 #include <sys/stat.h>

@@ -19,6 +19,7 @@ limitation:
 bash shell function:
 you can add this two func to your ~/.bashrc, One key download:
 
+```bash
 ########################################################
 # 一键编译, 完成后在当前目录下生成build文件夹
 # one key compile, after this operation, the build dir will generate
@@ -31,7 +32,9 @@ CUR_PATH=`pwd`
 	cd $CUR_PATH/build
 	sdcc -mmcs51 $CUR_PATH/$1
 }
+```
 
+```bash
 # 一键编译&&烧写
 # one key compile&&isp, after this operation, the build dir will generate and programmed to STC chip
 stc-cisp() {
@@ -49,3 +52,4 @@ CUR_PATH=`pwd`
 	stcisp -f ${sourceFile%.*}.ihx
 }
 ########################################################
+```

@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/van9ogh/stc-isp.svg)](https://travis-ci.org/van9ogh/stc-isp)
+
 An STC 8051 ISP programmer for linux
 for more information please use -h help
 

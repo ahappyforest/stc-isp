@@ -1,9 +1,8 @@
 
 [![Build Status](https://travis-ci.org/van9ogh/stc-isp.svg)](https://travis-ci.org/van9ogh/stc-isp)
 
-An STC 8051 ISP programmer for linux
+_An STC 8051 ISP programmer_ for linux
 for more information please use -h help
-
 
 this is a hack from gSTCISP, I convert gtk(2.0) version to command version
 maybe, someone are looking for...just try this tools...
@@ -16,7 +15,8 @@ limitation:
 	2. for some unknown reason, TTL to RS232 cannot download, 
 	   so if you konw, just hack my code.
 
-bash shell function:
+_bash shell function:_
+
 you can add this two func to your ~/.bashrc, One key download:
 
 ```bash

@@ -53,3 +53,7 @@ CUR_PATH=`pwd`
 }
 ########################################################
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/van9ogh/stc-isp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

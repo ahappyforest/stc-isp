@@ -53,5 +53,4 @@ CUR_PATH=`pwd`
 ```
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/van9ogh/stc-isp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/van9ogh/stc-isp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")  [![Inline docs](http://inch-ci.org/github/van9ogh/stc-isp.svg?branch=master)](http://inch-ci.org/github/van9ogh/stc-isp)
